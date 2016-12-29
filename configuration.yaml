@@ -1,0 +1,620 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Berlin
+
+############################# customize ###############################
+  customize:
+    switch.bett_links:
+      friendly_name: Bettlampe
+      icon: mdi:lightbulb
+    switch.bett_rechts:
+      friendly_name: Bettlicht
+      icon: mdi:led-off
+    switch.waschmaschine:
+      friendly_name: Waschmaschine
+#      icon: mdi:washing-machine
+    switch.kaffeemaschine:
+      friendly_name: Kaffeemaschine
+      icon: mdi:coffee
+    switch.wasserkocher:
+      friendly_name: Wasserkocher
+      icon: mdi:kettle
+    switch.fire:
+      friendly_name: Fire TV
+      icon: mdi:play-circle
+    binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0:
+      friendly_name: Staircase door
+#      icon: mdi:play-circle
+    binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0:
+      friendly_name: Balcony door
+#      icon: mdi:play-circle
+    sensor.neo_coolcam_unknown_type0003_id0082_access_control_3_9:
+      friendly_name: Balcony door access control
+    sensor.neo_coolcam_unknown_type0003_id0082_access_control_4_9:
+      friendly_name: Staircase door acces control
+    sensor.neo_coolcam_unknown_type0003_id0082_alarm_type_4_0:
+      friendly_name: Staircase door alarm type
+    sensor.neo_coolcam_unknown_type0003_id0082_alarm_level_4_1:
+      friendly_name: Staircase door alaram level
+    sensor.neo_coolcam_unknown_type0003_id0082_sourcenodeid_4_2:
+      friendly_name: Staircase door node id
+    sensor.neo_coolcam_unknown_type0003_id0082_alarm_type_3_0:
+      friendly_name: Balcony door alarm type
+    sensor.neo_coolcam_unknown_type0003_id0082_alarm_level_3_1:
+      friendly_name: Balcony door alaram level
+    sensor.neo_coolcam_unknown_type0003_id0082_sourcenodeid_3_2:
+      friendly_name: Balcony door node id
+
+group:
+################ visenzews ###################
+#  default_view:
+#    view: yes
+#    name: Home
+#    entities:
+#     - group.wohnzimmer
+#     - group.schlafzimmer
+#     - group.kueche
+#     - group.badezimmer
+#     - group.presenz
+  wohnzimmer_view:
+   view: yes
+   name: Wohnzimmer
+   entities:
+    - group.wohnzimmer
+  schlafzimmer_view:
+    view: yes
+    name: Schlafzimmer
+    entities:
+     - group.schlafzimmer
+  kueche_view:
+    view: yes
+    name: Küche
+    entities:
+     - group.kueche
+  badezimmer_view:
+    view: yes
+    name: Badezimmer
+    entities:
+     - group.badezimmer
+  umgebung_view:
+    view: yes
+    name: Umgebung
+    entities:
+     - group.umgebung
+  assistant_view:
+    view: yes
+    name: Assistant
+    entities:
+     - group.assistant
+     - group.automations
+     - switch.docker
+
+############### gnroups ##################
+  schlafzimmer:
+    name: Schlafzimmer
+    entities:
+     - switch.bett_links
+     - switch.bett_rechts
+     - light.schlafzimmer_lampe
+  wohnzimmer:
+    name: Wohnzimmer
+    entities:
+     - switch.fire
+     - light.stehlampe
+     - light.wohnzimmer_lampe
+     - media_player.video
+     - scene.wohnzimmer_dunkel
+     - scene.wohnzimmer_normal
+     - camera.wohnzimmer_camera
+  kueche:
+    name: Küche
+    entities:
+     - switch.kaffeemaschine
+     - switch.wasserkocher
+  badezimmer:
+    name: Badezimmer
+    entities:
+     - switch.waschmaschine
+  assistant:
+    name: Assistant
+    entities:
+     - sensor.cpu_speed
+     - sensor.cpu_use
+     - sensor.disk_use
+     - sensor.disk_use_
+     - sensor.disk_use_home
+     - sensor.ipv4_address_eth0
+     - sensor.packets_received_eth0
+     - sensor.packets_sent_eth0
+     - sensor.ram_free
+     - sensor.since_last_boot
+  umgebung:
+    name: Umgebung
+    entities:
+     - sun.sun
+     - sensor.yr_symbol
+     - sensor.yr_cloudiness
+     - sensor.yr_dewpoint_temperature
+     - sensor.yr_fog
+     - sensor.yr_high_clouds
+     - sensor.yr_humidity
+     - sensor.yr_low_clouds
+     - sensor.yr_medium_clouds
+     - sensor.yr_precipitation
+     - sensor.yr_pressure
+     - sensor.yr_temperature
+     - sensor.yr_wind_direction
+     - sensor.yr_wind_speed
+  presenz:
+    name: Presenz
+    entities:
+     - device_tracker.krassi
+     - device_tracker.tab
+  automations:
+    name: Automation
+    entities:
+     - automation.media_player_playing
+     - automation.media_player_pausedstopped
+     - automation.update_notifications
+     - automation.tab_at_home
+     - automation.tab_not_at_home
+     - automation.go_to_bed
+  eingangstuer:
+    name: Eingangstuer
+    entities:
+     - binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0
+     - sensor.neo_coolcam_unknown_type0003_id0082_access_control_4_9
+     - sensor.neo_coolcam_unknown_type0003_id0082_alarm_type_4_0
+     - sensor.neo_coolcam_unknown_type0003_id0082_alarm_level_4_1
+     - sensor.neo_coolcam_unknown_type0003_id0082_sourcenodeid_4_2
+  balkontuer:
+    name: Balkontuer
+    entities:
+     - binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0
+     - sensor.neo_coolcam_unknown_type0003_id0082_access_control_3_9
+     - sensor.neo_coolcam_unknown_type0003_id0082_alarm_type_3_0
+     - sensor.neo_coolcam_unknown_type0003_id0082_alarm_level_3_1
+     - sensor.neo_coolcam_unknown_type0003_id0082_sourcenodeid_3_2
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  api_password: !secret api_password
+  server_port: 8443
+  ssl_certificate: /home/homeassistant/.homeassistant/certs/cert.crt
+  ssl_key: /home/homeassistant/.homeassistant/certs/priv_key.pem
+  cors_allowed_origins:
+    - https://google.com
+    - https://home-assistant.io
+  use_x_forwarded_for: true
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+
+###  Zones  ###                                                                                                                                                                       
+zone:
+- name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  radius: 30
+  icon: mdi:home
+- name: Kielce
+  latitude: !secret kielce_latitude
+  longitude: !secret kielce_longitude
+  radius: 30
+  icon: mdi:people
+- name: Krakow                                   
+  latitude: !secret krakau_latitude              
+  longitude: !secret krakau_longitude            
+  radius: 30                                     
+  icon: mdi:people
+- name: Plovdiv                               
+  latitude: !secret plovdiv_latitude
+  longitude: !secret plovdiv_longitude
+  radius: 30                                     
+  icon: mdi:people
+- name: Arbeit                               
+  latitude: !secret work_latitude              
+  longitude: !secret work_longitude            
+  radius: 30                                     
+  icon: mdi:people
+
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Logger settings
+#logger:
+#  default: debug
+
+# Track the sun
+sun:
+
+############################# sensors ############################
+sensor:
+  # Weather prediction
+  - platform: yr
+    monitored_conditions:
+      - temperature
+      - symbol
+      - precipitation
+      - windSpeed
+      - pressure
+      - windDirection
+      - humidity
+      - fog
+      - cloudiness
+      - lowClouds
+      - mediumClouds
+      - highClouds
+      - dewpointTemperature
+  - platform: cpuspeed
+  - platform: systemmonitor
+    resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_free
+    - type: processor_use
+    - type: since_last_boot
+    - type: disk_use_percent
+      arg: /
+    - type: packets_in
+      arg: eth0
+    - type: packets_out
+      arg: eth0
+    - type: ipv4_address
+      arg: eth0
+  - platform: mqtt
+    state_topic: "owntracks/tab/tab"
+    name: "Battery Tablet"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.batt }}'
+
+
+########################## media players ##########################
+#media_player kodi:
+#  platform: kodi
+#  host: http://192.168.1.7
+#  name: kodi
+#  username: kodi
+#  password: kodi
+#  port: 8080
+
+media_player firetv:
+  platform: firetv
+  name: Video
+
+############################# trackers ############################
+device_tracker tab:
+  platform: nmap_tracker
+  hosts: 192.168.1.237
+
+device_tracker s7:
+  platform: nmap_tracker
+  hosts: 192.168.1.62
+
+device_tracker owntracks:
+  platform: owntracks
+
+############################ emulated #############################
+emulated_hue:
+  host_ip: 192.168.1.217
+  listen_port: 8300
+  off_maps_to_on_domains:
+    - script
+    - scene
+  expose_by_default: true
+  exposed_domains:
+    #- light
+    - media_player
+    - switch
+    - scene
+
+########################## notifications ###########################
+notify:
+  - name: hass
+    platform: pushover
+    api_key: !secret pushover_api_key
+    user_key: !secret pushover_user_key
+
+############################# switches #################################
+switch zap:
+  platform: rpi_rf
+  gpio: 17
+  switches:
+    Wasserkocher:
+      protocol: 1
+      pulselength: 184
+      code_on: 4478259
+      code_off: 4478268
+    Kaffeemaschine:
+      protocol: 1
+      pulselength: 184
+      code_on: 4478403
+      code_off: 4478412
+    Bett_links:
+      protocol: 1
+      pulselength: 184
+      code_on: 4478723
+      code_off: 4478732
+    Bett_rechts:
+      protocol: 1
+      pulselength: 184
+      code_on: 4480259
+      code_off: 4480268
+    Waschmaschine:
+      protocol: 1
+      pulselength: 184
+      code_on: 4486403
+      code_off: 4486412
+
+# https://github.com/happyleavesaoc/python-firetv
+switch fire:
+  platform: command_line
+  switches:
+    fire:
+      command_on: "/usr/bin/curl -X GET http://localhost:5556/devices/action/default/media_play"
+      command_off: "/usr/bin/curl -X GET http://localhost:5556/devices/action/default/media_pause"
+      command_state: "/usr/bin/curl -X GET http://localhost:5556/devices/state/default"
+      value_template: '{{ value_json.state == "play" }}'
+      friendly_name: Fire
+
+switch docker:
+  platform: command_line
+  switches:
+    docker:
+      command_on: "/home/homeassistant/firetv_start.sh"
+      command_off: "/home/homeassistant/firetv_stop.sh"
+      command_state: "/home/homeassistant/firetv_status.sh"
+      value_template: '{{ value == "firetv" }}'
+      friendly_name: docker
+
+############################# scenes #################################
+scene:
+  - name: Wohnzimmer normal
+    entities:
+        light.stehlampe:
+            state: on
+            transition: 2
+            brightness: 100
+            xy_color: [ 0.4448, 0.4066 ]
+        light.wohnzimmer_lampe:
+            state: on
+            transition: 2
+            brightness: 100
+            xy_color: [ 0.4448, 0.4066 ]
+  - name: Wohnzimmer dunkel 
+    entities:
+        light.stehlampe:
+            state: on
+            transition: 2
+            brightness: 15
+            xy_color: [ 0.5926, 0.3814 ]
+        light.wohnzimmer_lampe:
+            state: on
+            transition: 2
+            brightness: 15
+            xy_color: [ 0.5926, 0.3814 ]
+
+############################# automations ###############################
+automation player:
+  - alias: "Media player paused/stopped"
+    trigger:
+      - platform: state
+        entity_id: media_player.video
+        from: 'playing'
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+    action:
+        service: scene.turn_on
+        entity_id: scene.Wohnzimmer_normal
+  - alias: "Media player playing"
+    trigger:
+      - platform: state
+        entity_id: media_player.video
+        to: 'playing'
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+    action:
+        service: scene.turn_on
+        entity_id: scene.Wohnzimmer_dunkel
+
+automation timer:
+  alias: "Go to bed!"
+  trigger:
+    platform: time
+    hours: 22
+    minutes: 30
+    seconds: 0
+  action:
+    service: notify.hass
+    data:
+      message: 'Time to go to bed!'
+
+
+automation hass_update:
+  - alias: Update notifications
+    trigger:
+      - platform: state
+        entity_id: updater.updater
+    action:
+      service: notify.hass
+      data:
+        message: 'There is a new Home Assistant release available.'
+
+
+automation nothome:
+  alias: "Tab not at home"
+  trigger:
+    platform: state
+    entity_id: device_tracker.Krassi
+    # Optional
+    from: 'home'
+    to: 'not_home'
+
+    # Alias for 'to'
+    state: 'not_home'
+
+  action:
+    service: notify.hass
+    data:
+      title: "Krassi is away"
+      message: "Krassi has left home. Please come back soon. State: {{ states.device_tracker.Krassi.state }}"
+
+automation home:
+  alias: "Tab at home"
+  trigger:
+    platform: state
+    entity_id: device_tracker.Krassi
+    # Optional
+    from: 'not_home'
+    to: 'home'
+
+    # Alias for 'to'
+    state: 'home'
+
+  action:
+    service: notify.hass
+    data:
+      title: "Krassi is home"
+      message: "Welcome home, Krassi! Glad to see you again. State: {{ states.device_tracker.Krassi.state }}"
+
+#automation door:
+#  alias: "Staircase door"
+#  trigger:
+#    platform: event
+#    event_type: zwave.node_event
+#    event_data:
+#      object_id: binary_sensor.__sensor_4_0
+#     basic_level: 255
+#  action:
+#    service: notify.hass
+#    data:
+#      title: "Staircase door"
+#      message: "Staircase door changed state: {{ binary_sensor.__sensor_4_0.state }}"
+
+automation staircase_door_closed:
+  alias: "Staircase door closed"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0
+    from: 'on'
+    to: 'off'
+    state: 'off'
+
+  action:
+    service: notify.hass
+    data:
+      title: "Staircase door closed"
+      message: "Staircase door changed state (closed): {{  states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0.state }}"
+
+automation staircase_door_opened:
+  alias: "Staircase door opened"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0
+    from: 'off'
+    to: 'on'
+    state: 'on'
+
+  action:
+    service: notify.hass
+    data:
+      title: "Staircase door opened"
+      message: "Staircase door changed state (opened): {{ states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0.state }}"
+
+automation balcony_door_closed:                
+  alias: "Balcony door closed"                 
+  trigger:                                       
+    platform: state                              
+    entity_id: binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0                       
+    from: 'on'                                   
+    to: 'off'                                    
+    state: 'off'                                 
+                                                 
+  action:                                        
+    service: notify.hass                         
+    data:                                        
+      title: "Balcony door closed"             
+      message: "Balcony door changed state (closed): {{  states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0.state }}"
+
+automation balcony_door_opened:                
+  alias: "Balcony door opened"                 
+  trigger:                                       
+    platform: state                              
+    entity_id: binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0                       
+    from: 'off'                                  
+    to: 'on'                                     
+    state: 'on'                                  
+                                                 
+  action:                                        
+    service: notify.hass                         
+    data:                                        
+      title: "Balcony door opened"             
+      message: "Balcony door changed state (opened): {{ states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0.state }}"
+
+
+############################# shell commands ###########################
+#shell_command:
+#  bash_turn_off: 'echo "off" > /tmp/cmd.txt'
+#  bash_turn_on: 'echo "on" > /tmp/cmd.txt'
+
+#camera:
+#  - platform: mjpeg
+#    mjpeg_url: http://192.168.1.7:8889
+#    name: Wohnzimmer Camera
+
+
+#/usr/local/lib/python3.4/dist-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config/
+zwave:
+  usb_path: /dev/ttyACM0
+  config_path: /usr/local/lib/python3.4/dist-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config/
+#  polling_interval: 5000
+
+#camera:                                          
+#  - platform: mjpeg                              
+#    mjpeg_url: http://192.168.1.7:8889           
+#    name: Wohnzimmer Camera
+
+mqtt:
+  broker: !secret mqtt_broker
+  port: !secret mqtt_port
+  client_id: !secret mqtt_client_id
+  keepalive: 60
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  protocol: 3.1
+
+weblink:
+  entities:
+    - name: router
+      url: http://192.168.1.1
