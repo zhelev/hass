@@ -191,18 +191,17 @@ group:
 # Enables the frontend
 frontend:
 
-http:
-  # Uncomment this to add a password (recommended!)
-  api_password: !secret api_password
-  server_port: 8443
-  ssl_certificate: /home/homeassistant/.homeassistant/certs/cert.crt
-  ssl_key: /home/homeassistant/.homeassistant/certs/priv_key.pem
-  cors_allowed_origins:
-    - https://google.com
-    - https://home-assistant.io
-  use_x_forwarded_for: true
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
+http: !include http.yaml
+#  api_password: !secret api_password
+#  server_port: 8443
+#  ssl_certificate: /home/homeassistant/.homeassistant/certs/cert.crt
+#  ssl_key: /home/homeassistant/.homeassistant/certs/priv_key.pem
+#  cors_allowed_origins:
+#    - https://google.com
+#    - https://home-assistant.io
+#  use_x_forwarded_for: true
+#  ip_ban_enabled: true
+#  login_attempts_threshold: 5
 
 ###  Zones  ###
 zone: !include_dir_merge_list zones
