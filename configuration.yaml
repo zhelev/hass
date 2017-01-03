@@ -244,24 +244,13 @@ device_tracker: !include_dir_merge_list trackers
 
 ############################ emulated #############################
 emulated_hue: !include emulated_hue.yaml
-#  host_ip: 192.168.1.217
-#  listen_port: 8300
-#  off_maps_to_on_domains:
-#    - script
-#    - scene
-#  expose_by_default: true
-#  exposed_domains:
-#    #- light
-#    - media_player
-#    - switch
-#    - scene
 
-########################## notifications ###########################
-notify:
-  - name: hass
-    platform: pushover
-    api_key: !secret pushover_api_key
-    user_key: !secret pushover_user_key
+######################### notifications ###########################
+notify: !include_dir_merge_list notifiers
+#  - name: hass
+#    platform: pushover
+#    api_key: !secret pushover_api_key
+#    user_key: !secret pushover_user_key
 
 ############################# switches #################################
 switch zap:
@@ -378,7 +367,7 @@ automation timer:
     minutes: 30
     seconds: 0
   action:
-    service: notify.hass
+    service: notify.pushover
     data:
       message: 'Time to go to bed!'
 
@@ -389,7 +378,7 @@ automation hass_update:
       - platform: state
         entity_id: updater.updater
     action:
-      service: notify.hass
+      service: notify.pushover
       data:
         message: 'There is a new Home Assistant release available.'
 
@@ -407,7 +396,7 @@ automation nothome:
     state: 'not_home'
 
   action:
-    service: notify.hass
+    service: notify.pushover
     data:
       title: "Krassi is away"
       message: "Krassi has left home. Please come back soon. State: {{ states.device_tracker.Krassi.state }}"
@@ -425,7 +414,7 @@ automation home:
     state: 'home'
 
   action:
-    service: notify.hass
+    service: notify.pushover
     data:
       title: "Krassi is home"
       message: "Welcome home, Krassi! Glad to see you again. State: {{ states.device_tracker.Krassi.state }}"
@@ -439,7 +428,7 @@ automation home:
 #      object_id: binary_sensor.__sensor_4_0
 #     basic_level: 255
 #  action:
-#    service: notify.hass
+#    service: notify.pushover
 #    data:
 #      title: "Staircase door"
 #      message: "Staircase door changed state: {{ binary_sensor.__sensor_4_0.state }}"
@@ -454,7 +443,7 @@ automation staircase_door_closed:
     state: 'off'
 
   action:
-    service: notify.hass
+    service: notify.pushover
     data:
       title: "Staircase door closed"
       message: "Staircase door changed state (closed): {{  states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0.state }}"
@@ -469,7 +458,7 @@ automation staircase_door_opened:
     state: 'on'
 
   action:
-    service: notify.hass
+    service: notify.pushover
     data:
       title: "Staircase door opened"
       message: "Staircase door changed state (opened): {{ states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0.state }}"
@@ -484,7 +473,7 @@ automation balcony_door_closed:
     state: 'off'                                 
                                                  
   action:                                        
-    service: notify.hass                         
+    service: notify.pushover
     data:                                        
       title: "Balcony door closed"             
       message: "Balcony door changed state (closed): {{  states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0.state }}"
@@ -499,7 +488,7 @@ automation balcony_door_opened:
     state: 'on'                                  
                                                  
   action:                                        
-    service: notify.hass                         
+    service: notify.pushover
     data:                                        
       title: "Balcony door opened"             
       message: "Balcony door changed state (opened): {{ states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0.state }}"
