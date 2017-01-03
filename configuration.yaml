@@ -471,24 +471,16 @@ automation balcony_door_opened:
 #  bash_turn_off: 'echo "off" > /tmp/cmd.txt'
 #  bash_turn_on: 'echo "on" > /tmp/cmd.txt'
 
+############################# cameras ##################################
 camera: !include_dir_merge_list cameras 
 
-zwave:
-  usb_path: /dev/ttyACM0
-#  config_path: /usr/local/lib/python3.4/dist-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config/
-  config_path: /srv/homeassistant/python-openzwave/openzwave/config/
-#  polling_interval: 5000
+############################# zwave ####################################
+zwave: !include zwave.yaml
 
-mqtt:
-  broker: !secret mqtt_broker
-  port: !secret mqtt_port
-  client_id: !secret mqtt_client_id
-  keepalive: 60
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  protocol: 3.1
+############################# mqtt #####################################
+mqtt: !include mqtt.yaml
 
-# weblinks
+############################# weblinks #################################
 weblink:
   entities:
     - name: router
