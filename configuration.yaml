@@ -191,19 +191,10 @@ group:
 # Enables the frontend
 frontend:
 
+######################## http server ###############################
 http: !include http.yaml
-#  api_password: !secret api_password
-#  server_port: 8443
-#  ssl_certificate: /home/homeassistant/.homeassistant/certs/cert.crt
-#  ssl_key: /home/homeassistant/.homeassistant/certs/priv_key.pem
-#  cors_allowed_origins:
-#    - https://google.com
-#    - https://home-assistant.io
-#  use_x_forwarded_for: true
-#  ip_ban_enabled: true
-#  login_attempts_threshold: 5
 
-###  Zones  ###
+#######################  zones  ####################################
 zone: !include_dir_merge_list zones
 
 # Checks for available updates
@@ -252,18 +243,18 @@ media_player firetv:
 device_tracker: !include_dir_merge_list trackers
 
 ############################ emulated #############################
-emulated_hue:
-  host_ip: 192.168.1.217
-  listen_port: 8300
-  off_maps_to_on_domains:
-    - script
-    - scene
-  expose_by_default: true
-  exposed_domains:
-    #- light
-    - media_player
-    - switch
-    - scene
+emulated_hue: !include emulated_hue.yaml
+#  host_ip: 192.168.1.217
+#  listen_port: 8300
+#  off_maps_to_on_domains:
+#    - script
+#    - scene
+#  expose_by_default: true
+#  exposed_domains:
+#    #- light
+#    - media_player
+#    - switch
+#    - scene
 
 ########################## notifications ###########################
 notify:
