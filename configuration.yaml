@@ -302,31 +302,7 @@ switch docker:
       friendly_name: docker
 
 ############################# scenes #################################
-scene:
-  - name: Wohnzimmer normal
-    entities:
-        light.stehlampe:
-            state: on
-            transition: 2
-            brightness: 100
-            xy_color: [ 0.4448, 0.4066 ]
-        light.wohnzimmer_lampe:
-            state: on
-            transition: 2
-            brightness: 100
-            xy_color: [ 0.4448, 0.4066 ]
-  - name: Wohnzimmer dunkel 
-    entities:
-        light.stehlampe:
-            state: on
-            transition: 2
-            brightness: 15
-            xy_color: [ 0.5926, 0.3814 ]
-        light.wohnzimmer_lampe:
-            state: on
-            transition: 2
-            brightness: 15
-            xy_color: [ 0.5926, 0.3814 ]
+scene: !include_dir_merge_list scenes
 
 ############################# automations ###############################
 automation player:
@@ -495,10 +471,7 @@ automation balcony_door_opened:
 #  bash_turn_off: 'echo "off" > /tmp/cmd.txt'
 #  bash_turn_on: 'echo "on" > /tmp/cmd.txt'
 
-#camera:
-#  - platform: mjpeg
-#    mjpeg_url: http://192.168.1.7:8889
-#    name: Wohnzimmer Camera
+camera: !include_dir_merge_list cameras 
 
 zwave:
   usb_path: /dev/ttyACM0
