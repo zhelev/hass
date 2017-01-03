@@ -227,6 +227,8 @@ sun:
 sensor: !include_dir_merge_list sensors
 
 ########################## media players ##########################
+media_player: !include_dir_merge_list players
+
 #media_player kodi:
 #  platform: kodi
 #  host: http://192.168.1.7
@@ -235,9 +237,9 @@ sensor: !include_dir_merge_list sensors
 #  password: kodi
 #  port: 8080
 
-media_player firetv:
-  platform: firetv
-  name: Video
+#media_player firetv:
+#  platform: firetv
+#  name: Video
 
 ############################# trackers ############################
 device_tracker: !include_dir_merge_list trackers
