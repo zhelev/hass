@@ -1,0 +1,15 @@
+  - platform: systemmonitor
+    resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_free
+    - type: processor_use
+    - type: since_last_boot
+    - type: disk_use_percent
+      arg: /
+    - type: packets_in
+      arg: eth0
+    - type: packets_out
+      arg: eth0
+    - type: ipv4_address
+      arg: eth0

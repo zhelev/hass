@@ -1,0 +1,4 @@
+  - platform: waqi
+    locations:
+      - krakau
+      - kielce
