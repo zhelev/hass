@@ -481,13 +481,10 @@ zwave: !include zwave.yaml
 mqtt: !include mqtt.yaml
 
 ############################# weblinks #################################
-weblink:
-  entities:
-    - name: router
-      url: http://192.168.1.1
+weblink: !include weblink.yaml
 
-ifttt:
-  key: !secret ifttt_key
+############################# ifttt ####################################
+ifttt: !include ifttt.yaml
 
 automation ifttt_test:
   alias: Startup Notification
