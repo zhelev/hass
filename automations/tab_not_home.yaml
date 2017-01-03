@@ -1,0 +1,14 @@
+  alias: "Tab not at home"
+  trigger:
+    platform: state
+    entity_id: device_tracker.Krassi
+    # Optional
+    from: 'home'
+    to: 'not_home'
+    # Alias for 'to'
+    state: 'not_home'
+  action:
+    service: notify.pushover
+    data:
+      title: "Krassi is away"
+      message: "Krassi has left home. Please come back soon. State: {{ states.device_tracker.Krassi.state }}"

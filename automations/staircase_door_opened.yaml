@@ -1,0 +1,12 @@
+  alias: "Staircase door opened"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0
+    from: 'off'
+    to: 'on'
+    state: 'on'
+  action:
+    service: notify.pushover
+    data:
+      title: "Staircase door opened"
+      message: "Staircase door changed state (opened): {{ states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0.state }}"

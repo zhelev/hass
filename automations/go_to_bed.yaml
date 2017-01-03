@@ -1,0 +1,10 @@
+  alias: "Go to bed!"
+  trigger:
+    platform: time
+    hours: 22
+    minutes: 30
+    seconds: 0
+  action:
+    service: notify.pushover
+    data:
+      message: 'Time to go to bed!'

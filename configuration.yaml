@@ -245,91 +245,7 @@ switch: !include_dir_merge_list switches
 scene: !include_dir_merge_list scenes
 
 ############################# automations ###############################
-automation player:
-  - alias: "Media player paused/stopped"
-    trigger:
-      - platform: state
-        entity_id: media_player.video
-        from: 'playing'
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-    action:
-        service: scene.turn_on
-        entity_id: scene.Wohnzimmer_normal
-  - alias: "Media player playing"
-    trigger:
-      - platform: state
-        entity_id: media_player.video
-        to: 'playing'
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-    action:
-        service: scene.turn_on
-        entity_id: scene.Wohnzimmer_dunkel
-
-automation timer:
-  alias: "Go to bed!"
-  trigger:
-    platform: time
-    hours: 22
-    minutes: 30
-    seconds: 0
-  action:
-    service: notify.pushover
-    data:
-      message: 'Time to go to bed!'
-
-
-automation hass_update:
-  - alias: Update notifications
-    trigger:
-      - platform: state
-        entity_id: updater.updater
-    action:
-      service: notify.pushover
-      data:
-        message: 'There is a new Home Assistant release available.'
-
-
-automation nothome:
-  alias: "Tab not at home"
-  trigger:
-    platform: state
-    entity_id: device_tracker.Krassi
-    # Optional
-    from: 'home'
-    to: 'not_home'
-
-    # Alias for 'to'
-    state: 'not_home'
-
-  action:
-    service: notify.pushover
-    data:
-      title: "Krassi is away"
-      message: "Krassi has left home. Please come back soon. State: {{ states.device_tracker.Krassi.state }}"
-
-automation home:
-  alias: "Tab at home"
-  trigger:
-    platform: state
-    entity_id: device_tracker.Krassi
-    # Optional
-    from: 'not_home'
-    to: 'home'
-
-    # Alias for 'to'
-    state: 'home'
-
-  action:
-    service: notify.pushover
-    data:
-      title: "Krassi is home"
-      message: "Welcome home, Krassi! Glad to see you again. State: {{ states.device_tracker.Krassi.state }}"
+automation: !include_dir_list automations
 
 #automation door:
 #  alias: "Staircase door"
@@ -344,67 +260,6 @@ automation home:
 #    data:
 #      title: "Staircase door"
 #      message: "Staircase door changed state: {{ binary_sensor.__sensor_4_0.state }}"
-
-automation staircase_door_closed:
-  alias: "Staircase door closed"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0
-    from: 'on'
-    to: 'off'
-    state: 'off'
-
-  action:
-    service: notify.pushover
-    data:
-      title: "Staircase door closed"
-      message: "Staircase door changed state (closed): {{  states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0.state }}"
-
-automation staircase_door_opened:
-  alias: "Staircase door opened"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0
-    from: 'off'
-    to: 'on'
-    state: 'on'
-
-  action:
-    service: notify.pushover
-    data:
-      title: "Staircase door opened"
-      message: "Staircase door changed state (opened): {{ states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0.state }}"
-
-automation balcony_door_closed:                
-  alias: "Balcony door closed"                 
-  trigger:                                       
-    platform: state                              
-    entity_id: binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0                       
-    from: 'on'                                   
-    to: 'off'                                    
-    state: 'off'                                 
-                                                 
-  action:                                        
-    service: notify.pushover
-    data:                                        
-      title: "Balcony door closed"             
-      message: "Balcony door changed state (closed): {{  states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0.state }}"
-
-automation balcony_door_opened:                
-  alias: "Balcony door opened"                 
-  trigger:                                       
-    platform: state                              
-    entity_id: binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0                       
-    from: 'off'                                  
-    to: 'on'                                     
-    state: 'on'                                  
-                                                 
-  action:                                        
-    service: notify.pushover
-    data:                                        
-      title: "Balcony door opened"             
-      message: "Balcony door changed state (opened): {{ states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0.state }}"
-
 
 ############################# shell commands ###########################
 #shell_command:
@@ -425,13 +280,4 @@ weblink: !include weblink.yaml
 
 ############################# ifttt ####################################
 ifttt: !include ifttt.yaml
-
-automation ifttt_test:
-  alias: Startup Notification
-  trigger:
-    platform: event
-    event_type: homeassistant_start
-  action:
-    service: ifttt.trigger
-    data: {"event":"HassStarted", "value1":"Hello World from Hass!"}
 
