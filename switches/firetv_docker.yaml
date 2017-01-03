@@ -1,0 +1,9 @@
+ - platform: command_line
+   switches:
+     docker:
+       command_on: "/home/homeassistant/firetv_start.sh"
+       command_off: "/home/homeassistant/firetv_stop.sh"
+       command_state: "/home/homeassistant/firetv_status.sh"
+       value_template: '{{ value == "firetv" }}'
+       friendly_name: docker
+

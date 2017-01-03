@@ -1,0 +1,29 @@
+ - platform: rpi_rf
+   gpio: 17
+   switches:
+     Wasserkocher:
+       protocol: 1
+       pulselength: 184
+   # Uncomment this to add a password (recommended!)
+       code_on: 4478259
+       code_off: 4478268
+     Kaffeemaschine:
+       protocol: 1
+       pulselength: 184
+       code_on: 4478403
+       code_off: 4478412
+     Bett_links:
+       protocol: 1
+       pulselength: 184
+       code_on: 4478723
+       code_off: 4478732
+     Bett_rechts:
+       protocol: 1
+       pulselength: 184
+       code_on: 4480259
+       code_off: 4480268
+     Waschmaschine:
+       protocol: 1
+       pulselength: 184
+       code_on: 4486403
+       code_off: 4486412

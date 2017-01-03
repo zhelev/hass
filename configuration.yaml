@@ -249,57 +249,59 @@ emulated_hue: !include emulated_hue.yaml
 notify: !include_dir_merge_list notifiers
 
 ############################# switches #################################
-switch zap:
-  platform: rpi_rf
-  gpio: 17
-  switches:
-    Wasserkocher:
-      protocol: 1
-      pulselength: 184
-  # Uncomment this to add a password (recommended!)
-      code_on: 4478259
-      code_off: 4478268
-    Kaffeemaschine:
-      protocol: 1
-      pulselength: 184
-      code_on: 4478403
-      code_off: 4478412
-    Bett_links:
-      protocol: 1
-      pulselength: 184
-      code_on: 4478723
-      code_off: 4478732
-    Bett_rechts:
-      protocol: 1
-      pulselength: 184
-      code_on: 4480259
-      code_off: 4480268
-    Waschmaschine:
-      protocol: 1
-      pulselength: 184
-      code_on: 4486403
-      code_off: 4486412
+switch: !include_dir_merge_list switches
 
-# https://github.com/happyleavesaoc/python-firetv
-switch fire:
-  platform: command_line
-  switches:
-    fire:
-      command_on: "/usr/bin/curl -X GET http://localhost:5556/devices/action/default/media_play"
-      command_off: "/usr/bin/curl -X GET http://localhost:5556/devices/action/default/media_pause"
-      command_state: "/usr/bin/curl -X GET http://localhost:5556/devices/state/default"
-      value_template: '{{ value_json.state == "play" }}'
-      friendly_name: Fire
-
-switch docker:
-  platform: command_line
-  switches:
-    docker:
-      command_on: "/home/homeassistant/firetv_start.sh"
-      command_off: "/home/homeassistant/firetv_stop.sh"
-      command_state: "/home/homeassistant/firetv_status.sh"
-      value_template: '{{ value == "firetv" }}'
-      friendly_name: docker
+#switch zap:
+#  platform: rpi_rf
+#  gpio: 17
+#  switches:
+#    Wasserkocher:
+#      protocol: 1
+#      pulselength: 184
+#  # Uncomment this to add a password (recommended!)
+#      code_on: 4478259
+#      code_off: 4478268
+#    Kaffeemaschine:
+#      protocol: 1
+#      pulselength: 184
+#      code_on: 4478403
+#      code_off: 4478412
+#    Bett_links:
+#      protocol: 1
+#      pulselength: 184
+#      code_on: 4478723
+#      code_off: 4478732
+#    Bett_rechts:
+#      protocol: 1
+#      pulselength: 184
+#      code_on: 4480259
+#      code_off: 4480268
+#    Waschmaschine:
+#      protocol: 1
+#      pulselength: 184
+#      code_on: 4486403
+#      code_off: 4486412
+#
+## https://github.com/happyleavesaoc/python-firetv
+#switch fire:
+#  platform: command_line
+#  switches:
+#    fire:
+#      command_on: "/usr/bin/curl -X GET http://localhost:5556/devices/action/default/media_play"
+#      command_off: "/usr/bin/curl -X GET http://localhost:5556/devices/action/default/media_pause"
+#      command_state: "/usr/bin/curl -X GET http://localhost:5556/devices/state/default"
+#      value_template: '{{ value_json.state == "play" }}'
+#      friendly_name: Fire
+#
+#switch docker:
+#  platform: command_line
+#  switches:
+#    docker:
+#      command_on: "/home/homeassistant/firetv_start.sh"
+#      command_off: "/home/homeassistant/firetv_stop.sh"
+#      command_state: "/home/homeassistant/firetv_status.sh"
+#      value_template: '{{ value == "firetv" }}'
+#      friendly_name: docker
 
 ############################# scenes #################################
 scene: !include_dir_merge_list scenes

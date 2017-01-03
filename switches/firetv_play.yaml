@@ -1,0 +1,9 @@
+# https://github.com/happyleavesaoc/python-firetv
+ - platform: command_line
+   switches:
+     fire:
+       command_on: "/usr/bin/curl -X GET http://localhost:5556/devices/action/default/media_play"
+       command_off: "/usr/bin/curl -X GET http://localhost:5556/devices/action/default/media_pause"
+       command_state: "/usr/bin/curl -X GET http://localhost:5556/devices/state/default"
+       value_template: '{{ value_json.state == "play" }}'
+       friendly_name: Fire
