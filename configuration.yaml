@@ -249,16 +249,7 @@ media_player firetv:
   name: Video
 
 ############################# trackers ############################
-device_tracker tab:
-  platform: nmap_tracker
-  hosts: 192.168.1.237
-
-device_tracker s7:
-  platform: nmap_tracker
-  hosts: 192.168.1.62
-
-device_tracker owntracks:
-  platform: owntracks
+device_tracker: !include_dir_merge_list trackers
 
 ############################ emulated #############################
 emulated_hue:
@@ -289,6 +280,7 @@ switch zap:
     Wasserkocher:
       protocol: 1
       pulselength: 184
+  # Uncomment this to add a password (recommended!)
       code_on: 4478259
       code_off: 4478268
     Kaffeemaschine:
