@@ -1,0 +1,5 @@
+- name: Krakow
+  latitude: !secret krakau_latitude
+  longitude: !secret krakau_longitude
+  radius: 30
+  icon: mdi:account

@@ -1,0 +1,5 @@
+- name: Kielce
+  latitude: !secret kielce_latitude
+  longitude: !secret kielce_longitude
+  radius: 30
+  icon: mdi:account

@@ -204,34 +204,8 @@ http:
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
-###  Zones  ###                                                                                                                                                                       
-zone:
-- name: Home
-  latitude: !secret latitude
-  longitude: !secret longitude
-  radius: 30
-  icon: mdi:home
-- name: Kielce
-  latitude: !secret kielce_latitude
-  longitude: !secret kielce_longitude
-  radius: 30
-  icon: mdi:people
-- name: Krakow                                   
-  latitude: !secret krakau_latitude              
-  longitude: !secret krakau_longitude            
-  radius: 30                                     
-  icon: mdi:people
-- name: Plovdiv                               
-  latitude: !secret plovdiv_latitude
-  longitude: !secret plovdiv_longitude
-  radius: 30                                     
-  icon: mdi:people
-- name: Arbeit                               
-  latitude: !secret work_latitude              
-  longitude: !secret work_longitude            
-  radius: 30                                     
-  icon: mdi:people
-
+###  Zones  ###
+zone: !include_dir_merge_list zones
 
 # Checks for available updates
 updater:

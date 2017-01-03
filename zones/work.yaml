@@ -1,0 +1,5 @@
+- name: Arbeit
+  latitude: !secret work_latitude
+  longitude: !secret work_longitude
+  radius: 30
+  icon: mdi:briefcase

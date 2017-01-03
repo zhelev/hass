@@ -1,0 +1,5 @@
+- name: Plovdiv
+  latitude: !secret plovdiv_latitude
+  longitude: !secret plovdiv_longitude
+  radius: 30
+  icon: mdi:account
