@@ -1,0 +1,12 @@
+  - name: Wohnzimmer normal
+    entities:
+        light.stehlampe:
+            state: on
+            transition: 2
+            brightness: 100
+            xy_color: [ 0.4448, 0.4066 ]
+        light.wohnzimmer_lampe:
+            state: on
+            transition: 2
+            brightness: 100
+            xy_color: [ 0.4448, 0.4066 ]

@@ -1,0 +1,12 @@
+  - name: Wohnzimmer dunkel
+    entities:
+        light.stehlampe:
+            state: on
+            transition: 2
+            brightness: 15
+            xy_color: [ 0.5926, 0.3814 ]
+        light.wohnzimmer_lampe:
+            state: on
+            transition: 2
+            brightness: 15
+            xy_color: [ 0.5926, 0.3814 ]
