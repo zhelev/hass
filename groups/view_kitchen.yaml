@@ -1,5 +1,5 @@
-  kueche_view:
-    view: yes
-    name: Küche
-    entities:
-     - group.kueche
+kueche_view:
+  view: yes
+  name: Küche
+  entities:
+   - group.kueche

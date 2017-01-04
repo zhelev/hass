@@ -1,7 +1,7 @@
-  assistant_view:
-    view: yes
-    name: Assistant
-    entities:
-     - group.assistant
-     - group.automations
-     - switch.docker
+assistant_view:
+  view: yes
+  name: Assistant
+  entities:
+   - group.assistant
+   - group.automations
+   - switch.docker

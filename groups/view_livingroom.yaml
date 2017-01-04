@@ -1,5 +1,5 @@
-  wohnzimmer_view:
-   view: yes
-   name: Wohnzimmer
-   entities:
-    - group.wohnzimmer
+wohnzimmer_view:
+ view: yes
+ name: Wohnzimmer
+ entities:
+  - group.wohnzimmer

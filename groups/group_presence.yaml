@@ -1,5 +1,5 @@
-  presenz:
-    name: Presenz
-    entities:
-     - device_tracker.krassi
-     - device_tracker.tab
+presenz:
+  name: Presenz
+  entities:
+   - device_tracker.krassi
+   - device_tracker.tab

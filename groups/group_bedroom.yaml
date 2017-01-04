@@ -1,6 +1,6 @@
-  schlafzimmer:
-    name: Schlafzimmer
-    entities:
-     - switch.bett_links
-     - switch.bett_rechts
-     - light.schlafzimmer_lampe
+schlafzimmer:
+  name: Schlafzimmer
+  entities:
+   - switch.bett_links
+   - switch.bett_rechts
+   - light.schlafzimmer_lampe

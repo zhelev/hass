@@ -1,5 +1,5 @@
-  schlafzimmer_view:
-    view: yes
-    name: Schlafzimmer
-    entities:
-     - group.schlafzimmer
+schlafzimmer_view:
+  view: yes
+  name: Schlafzimmer
+  entities:
+   - group.schlafzimmer
