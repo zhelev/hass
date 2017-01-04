@@ -1,0 +1,5 @@
+  kueche:
+    name: Küche
+    entities:
+     - switch.kaffeemaschine
+     - switch.wasserkocher

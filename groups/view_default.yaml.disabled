@@ -1,0 +1,10 @@
+  default_view:
+    view: yes
+    name: Home
+    entities:
+     - group.wohnzimmer
+     - group.schlafzimmer
+     - group.kueche
+     - group.badezimmer
+     - group.presenz
+

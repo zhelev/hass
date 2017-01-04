@@ -1,0 +1,9 @@
+  automations:
+    name: Automation
+    entities:
+     - automation.media_player_playing
+     - automation.media_player_pausedstopped
+     - automation.update_notifications
+     - automation.tab_at_home
+     - automation.tab_not_at_home
+     - automation.go_to_bed

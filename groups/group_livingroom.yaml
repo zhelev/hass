@@ -1,0 +1,10 @@
+  wohnzimmer:
+    name: Wohnzimmer
+    entities:
+     - switch.fire
+     - light.stehlampe
+     - light.wohnzimmer_lampe
+     - media_player.video
+     - scene.wohnzimmer_dunkel
+     - scene.wohnzimmer_normal
+     - camera.wohnzimmer_camera

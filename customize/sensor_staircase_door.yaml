@@ -1,0 +1,10 @@
+    binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0:
+      friendly_name: Staircase door
+    sensor.neo_coolcam_unknown_type0003_id0082_access_control_4_9:
+      friendly_name: Staircase door acces control
+    sensor.neo_coolcam_unknown_type0003_id0082_alarm_type_4_0:
+      friendly_name: Staircase door alarm type
+    sensor.neo_coolcam_unknown_type0003_id0082_alarm_level_4_1:
+      friendly_name: Staircase door alaram level
+    sensor.neo_coolcam_unknown_type0003_id0082_sourcenodeid_4_2:
+      friendly_name: Staircase door node id

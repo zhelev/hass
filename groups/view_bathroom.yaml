@@ -1,0 +1,5 @@
+  badezimmer_view:
+    view: yes
+    name: Badezimmer
+    entities:
+     - group.badezimmer

@@ -1,0 +1,5 @@
+  umgebung_view:
+    view: yes
+    name: Umgebung
+    entities:
+     - group.umgebung

@@ -1,0 +1,18 @@
+    switch.bett_links:
+      friendly_name: Bettlampe
+      icon: mdi:lightbulb
+    switch.bett_rechts:
+      friendly_name: Bettlicht
+      icon: mdi:led-off
+    switch.waschmaschine:
+      friendly_name: Waschmaschine
+#      icon: mdi:washing-machine
+    switch.kaffeemaschine:
+      friendly_name: Kaffeemaschine
+      icon: mdi:coffee
+    switch.wasserkocher:
+      friendly_name: Wasserkocher
+      icon: mdi:kettle
+    switch.fire:
+      friendly_name: Fire TV
+      icon: mdi:play-circle

@@ -1,0 +1,4 @@
+  badezimmer:
+    name: Badezimmer
+    entities:
+     - switch.waschmaschine

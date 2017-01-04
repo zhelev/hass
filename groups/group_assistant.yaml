@@ -1,0 +1,13 @@
+  assistant:
+    name: Assistant
+    entities:
+     - sensor.cpu_speed
+     - sensor.cpu_use
+     - sensor.disk_use
+     - sensor.disk_use_
+     - sensor.disk_use_home
+     - sensor.ipv4_address_eth0
+     - sensor.packets_received_eth0
+     - sensor.packets_sent_eth0
+     - sensor.ram_free
+     - sensor.since_last_boot
