@@ -1,0 +1,2 @@
+bash_turn_off: 'echo "off" > /tmp/cmd.txt'
+bash_turn_on: 'echo "on" > /tmp/cmd.txt'

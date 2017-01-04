@@ -8,24 +8,22 @@ homeassistant:
   elevation: !secret elevation
   # metric for Metric, imperial for Imperial
   unit_system: metric
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # Pick yours http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Berlin
 
-############################# customize ###############################
+  # Customize - names, icons
   customize: !include_dir_merge_named customize
 
+# Groups and views
 group: !include_dir_merge_named groups
-
-# Show links to resources in log and frontend
-#introduction:
 
 # Enables the frontend
 frontend:
 
-######################## http server ###############################
+# http server
 http: !include http.yaml
 
-#######################  zones  ####################################
+# Zones
 zone: !include_dir_merge_list zones
 
 # Checks for available updates
@@ -40,43 +38,62 @@ conversation:
 # Enables support for tracking state changes over time.
 history:
 
-recorder:
-  purge_days: 3
+# Records events
+recorder: !include recorder.yaml
 
 # View all events in a logbook
 logbook:
 
 # Logger settings
-#logger:
-#  default: debug
+logger: !include logger.yaml
+
+# Weblink
+weblink: !include weblink.yaml
 
 # Track the sun
 sun:
 
-###  Sensors  ###
-#  Sensors are anything (hardware or software) that has a state.
+# Sensors
 sensor: !include_dir_merge_list sensors
 
-########################## media players ##########################
+# Media players 
 media_player: !include_dir_merge_list players
 
-############################# trackers ############################
+# Trackers
 device_tracker: !include_dir_merge_list trackers
 
-############################ emulated #############################
+# Emulated hue 
 emulated_hue: !include emulated_hue.yaml
 
-######################### notifications ###########################
+# Notifications 
 notify: !include_dir_merge_list notifiers
 
-############################# switches #################################
+# Switches
 switch: !include_dir_merge_list switches
 
-############################# scenes #################################
+# Scenes
 scene: !include_dir_merge_list scenes
 
-############################# automations ###############################
+# Shell command
+shell_command: !include shell_command.yaml
+
+# Automations
 automation: !include_dir_list automations
+
+# Cameras
+camera: !include_dir_merge_list cameras 
+
+# Z-Wave
+zwave: !include zwave.yaml
+
+# MQTT
+mqtt: !include mqtt.yaml
+
+# IFTT
+ifttt: !include ifttt.yaml
+
+#######################################################
+# Testing stuff
 
 #automation door:
 #  alias: "Staircase door"
@@ -91,24 +108,4 @@ automation: !include_dir_list automations
 #    data:
 #      title: "Staircase door"
 #      message: "Staircase door changed state: {{ binary_sensor.__sensor_4_0.state }}"
-
-############################# shell commands ###########################
-#shell_command:
-#  bash_turn_off: 'echo "off" > /tmp/cmd.txt'
-#  bash_turn_on: 'echo "on" > /tmp/cmd.txt'
-
-############################# cameras ##################################
-camera: !include_dir_merge_list cameras 
-
-############################# zwave ####################################
-zwave: !include zwave.yaml
-
-############################# mqtt #####################################
-mqtt: !include mqtt.yaml
-
-############################# weblinks #################################
-weblink: !include weblink.yaml
-
-############################# ifttt ####################################
-ifttt: !include ifttt.yaml
 

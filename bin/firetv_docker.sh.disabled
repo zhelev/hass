@@ -1,0 +1,27 @@
+#/bin/bash
+
+if [ $1 == "state" ]
+  then
+    docker ps | grep fire | awk -F "/" '{print $NF}' | awk '{print $NF}'
+fi
+
+if [ $1 == "stop" ]
+  then
+    docker stop firetv
+    docker rm firetv
+fi
+
+if [ $1 == "start" ]
+  then
+    docker stop firetv
+    docker rm firetv    
+    docker run -d -it --name firetv -p 5556:5556 djdefi/rpi-firetvserver firetv-server -d 192.168.1.167:5555
+fi
+
+#if [ $1 == "status" ]
+#  then
+#    echo "Hallo, kleiner Pingu!"
+#  else
+#    echo "Hallo, $1"
+#fi
+
