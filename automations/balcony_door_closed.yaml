@@ -1,7 +1,7 @@
   alias: "Balcony door closed"
   trigger:
     platform: state
-    entity_id: binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0      
+    entity_id: binary_sensor.balcony_door_sensor_6_0      
     from: 'on'
     to: 'off'
     state: 'off'
@@ -9,4 +9,4 @@
     service: notify.pushover
     data:
       title: "Balcony door closed"
-      message: "Balcony door changed state (closed): {{  states.binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0.state }}"
+      message: "Balcony door changed state (closed): {{  states.binary_sensor.balcony_door_sensor_6_0.state }}"

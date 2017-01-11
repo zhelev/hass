@@ -1,8 +1,8 @@
 balkontuer:
   name: Balkontuer
   entities:
-   - binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_3_0
-   - sensor.neo_coolcam_unknown_type0003_id0082_access_control_3_9
-   - sensor.neo_coolcam_unknown_type0003_id0082_alarm_type_3_0
-   - sensor.neo_coolcam_unknown_type0003_id0082_alarm_level_3_1
-   - sensor.neo_coolcam_unknown_type0003_id0082_sourcenodeid_3_2
+   - binary_sensor.balcony_door_sensor_6_0
+   - sensor.balcony_door_access_control_6_9
+   - sensor.balcony_door_alarm_type_6_0
+   - sensor.balcony_door_alarm_level_6_1
+   - sensor.balcony_door_sourcenodeid_6_2

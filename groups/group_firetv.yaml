@@ -1,0 +1,7 @@
+firetv:
+  name: Amazon
+  entities:
+   - media_player.video
+   - switch.fire
+   - switch.fast_forward
+   - switch.rewind

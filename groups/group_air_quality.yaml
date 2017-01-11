@@ -1,0 +1,5 @@
+air_quality:
+  name: Luft-Qualität
+  entities:
+   - sensor.waqi_krakowul_dietla_maopolska
+   - sensor.waqi_kielce_ul_jagiellonska

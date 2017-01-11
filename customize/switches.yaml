@@ -16,3 +16,10 @@
     switch.fire:
       friendly_name: Fire TV
       icon: mdi:play-circle
+    switch.rewind:
+      friendly_name: Zurück
+      icon: mdi:play-circle
+    switch.fast_forward:
+      friendly_name: Weiter
+      icon: mdi:play-circle
+

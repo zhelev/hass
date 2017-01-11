@@ -1,8 +1,8 @@
 eingangstuer:
   name: Eingangstuer
   entities:
-   - binary_sensor.neo_coolcam_unknown_type0003_id0082_sensor_4_0
-   - sensor.neo_coolcam_unknown_type0003_id0082_access_control_4_9
-   - sensor.neo_coolcam_unknown_type0003_id0082_alarm_type_4_0
-   - sensor.neo_coolcam_unknown_type0003_id0082_alarm_level_4_1
-   - sensor.neo_coolcam_unknown_type0003_id0082_sourcenodeid_4_2
+   - binary_sensor.staircase_door_sensor_4_0
+   - sensor.staircase_door_access_control_4_9
+   - sensor.staircase_door_alarm_type_4_0
+   - sensor.staircase_door_alarm_level_4_1
+   - sensor.staircase_door_sourcenodeid_4_2

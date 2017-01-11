@@ -1,0 +1,9 @@
+# https://github.com/happyleavesaoc/python-firetv
+ - platform: command_line
+   switches:
+     fast_forward:
+       command_on: "/usr/bin/curl -X GET http://localhost:5556/devices/action/default/media_next"
+       command_off: "/usr/bin/curl -X GET http://localhost:5556/devices/action/default/media_play"
+       command_state: "/usr/bin/curl -X GET http://localhost:5556/devices/state/default"
+       value_template: '{{ value_json.state == "dummy" }}'
+       friendly_name: Fast Forward
