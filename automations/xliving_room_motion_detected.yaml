@@ -1,0 +1,13 @@
+  alias: "Living Room Motion Sensor"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00012790ed
+      
+    from: 'off'
+    to: 'on'
+    state: 'on'
+  action:
+    service: notify.pushover
+    data:
+      title: "Living Room Motion Detected"
+      message: "Living Room Motion Detection: {{ states.binary_sensor.motion_sensor_158d00012790ed.state }}"

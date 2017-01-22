@@ -1,0 +1,13 @@
+  alias: "Living Room Door Sensor"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001263526
+      
+    from: 'off'
+    to: 'on'
+    state: 'on'
+  action:
+    service: notify.pushover
+    data:
+      title: "Living Room Door Opened"
+      message: "Living Room Door: {{ states.binary_sensor.door_window_sensor_158d0001263526.state }}"

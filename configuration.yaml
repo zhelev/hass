@@ -92,6 +92,9 @@ mqtt: !include mqtt.yaml
 # IFTT
 ifttt: !include ifttt.yaml
 
+# xiaomi
+xiaomi: !include xiaomi.yaml
+
 #######################################################
 # Testing stuff
 
