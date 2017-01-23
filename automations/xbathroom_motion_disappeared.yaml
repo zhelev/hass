@@ -1,0 +1,12 @@
+  alias: "Bathroom Motion Disappeared"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001173321
+      
+    from: 'on'
+    to: 'off'
+    state: 'off'
+  action:
+    service: media_player.turn_off
+    data:
+      entity_id: "media_player.unnamed_device_2"
