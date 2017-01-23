@@ -3,11 +3,13 @@
  - for platform discovery check does directories
   - components
   - netdisco
- - in custom_components - frontier_silicon.py
- - in configuration.yaml
-
+ - copy frontier_silicon.py in custom_components  
+ - in configuration.yaml:
+ 
+ ```yaml
 media_player:
  - platform: frontier_silicon
    host: 192.168.10
    password: 1234
+```
 
