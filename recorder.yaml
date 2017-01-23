@@ -1,1 +1,2 @@
-  purge_days: 3
+  purge_days: 30
+  db_url: !secret db_recorder_url
