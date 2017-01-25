@@ -7,6 +7,7 @@ https://home-assistant.io/components/media_player.frontier_silicon/
 import logging
 
 import asyncio
+import requests
 import voluptuous as vol
 
 import requests
@@ -47,7 +48,6 @@ def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
     """Setup the Frontier Silicon platform."""
     
     if discovery_info is not None:
-         #_LOGGER.warn(discovery_info)
          yield from async_add_entities([FrontierSiliconDevice(discovery_info, DEFAULT_PASSWORD)])
          return True
 
@@ -76,7 +76,7 @@ class FrontierSiliconDevice(MediaPlayerDevice):
         self._password = password
         self._state = STATE_UNKNOWN
         
-        self._name = None
+        self._name = FSAPI(self._device_url, self._password).friendly_name
         self._title = None
         self._mute = None
         self._source = None
@@ -325,6 +325,9 @@ class FSAPI(object):
         params.update(**extra)
 
         r = requests.get('%s/%s' % (self.webfsapi, path), params=params)
+        if r.status_code == 404:
+           return None 
+
         return objectify.fromstring(r.content)
  
     def __del__(self):
@@ -337,27 +340,43 @@ class FSAPI(object):
 
     def handle_set(self, item, value):
         doc = self.call('SET/{}'.format(item), dict(value=value))
+        if doc is None:
+           return None
+        
         return doc.status == 'FS_OK'
 
     def handle_text(self, item):
         doc = self.handle_get(item)
+        if doc is None:
+           return None
+
         return doc.value.c8_array.text or None
 
     def handle_int(self, item):
         doc = self.handle_get(item)
+        if doc is None:
+           return None
+
         return int(doc.value.u8.text) or None
 
     # returns an int, assuming the value does not exceed 8 bits
     def handle_long(self, item):
         doc = self.handle_get(item)
+        if doc is None:
+           return None
+
         return int(doc.value.u32.text) or None
 
     def handle_list(self, item):
         doc = self.call('LIST_GET_NEXT/'+item+'/-1', dict(
             maxItems=100,
         ))
+
+        if doc is None:
+           return []
+
         if not doc.status == 'FS_OK':
-            return None
+            return []
 
         ret = list()
         for index, item in enumerate(list(doc.iterchildren('item'))):
@@ -369,6 +388,9 @@ class FSAPI(object):
         return ret
 
     def collect_labels(self, items):
+        if items is None:
+           return []
+   	
         return [ str(item['label']) for item in items if item['label'] ]
 
     ###########################################
