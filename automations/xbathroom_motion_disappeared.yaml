@@ -9,4 +9,4 @@
   action:
     service: media_player.turn_off
     data:
-      entity_id: "media_player.unnamed_device_2"
+      entity_id: "media_player.badezimmer"
