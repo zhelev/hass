@@ -10,16 +10,14 @@ import asyncio
 import requests
 import voluptuous as vol
 
-import requests
-from lxml import objectify
-from urllib.parse import urlparse
-
 from homeassistant.components.media_player import (SUPPORT_NEXT_TRACK, SUPPORT_PAUSE, SUPPORT_PREVIOUS_TRACK, SUPPORT_SEEK,
     SUPPORT_PLAY_MEDIA, SUPPORT_VOLUME_MUTE, SUPPORT_VOLUME_SET, SUPPORT_VOLUME_STEP, SUPPORT_STOP, SUPPORT_TURN_OFF, SUPPORT_TURN_ON,
     SUPPORT_PLAY, SUPPORT_SELECT_SOURCE, MediaPlayerDevice, PLATFORM_SCHEMA )
 from homeassistant.const import (
     STATE_OFF, STATE_PLAYING, STATE_PAUSED, STATE_UNKNOWN, CONF_HOST, CONF_PORT, CONF_NAME, CONF_PASSWORD)
 import homeassistant.helpers.config_validation as cv
+
+REQUIREMENTS = ['fsapi==0.0.2']
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -84,6 +82,8 @@ class FrontierSiliconDevice(MediaPlayerDevice):
         self._media_image_url = None
 
     def get_fs(self):
+        from fsapi import FSAPI
+
         return FSAPI(self._device_url, self._password)
 
     ##################################  properties ##########################
@@ -253,232 +253,3 @@ class FrontierSiliconDevice(MediaPlayerDevice):
     def select_source(self, source):
         """Select input source."""
         self.get_fs().mode = source
-
-
-################################ FSAPI ####################################
-class FSAPI(object):
-
-    PLAY_STATES = {
-        0: 'stopped',
-        1: 'unknown',
-        2: 'playing',
-        3: 'paused',
-    }
-
-    def __init__(self, fsapi_device_url, pin):
-        self.pin = pin
-        self.sid = None
-        self.webfsapi = None
-        self.fsapi_device_url = fsapi_device_url
-
-        self.webfsapi = self.get_fsapi_endpoint()
-        self.sid = self.create_session()
-
-    def get_fsapi_endpoint(self):
-        r = requests.get(self.fsapi_device_url)
-        doc = objectify.fromstring(r.content)
-        return doc.webfsapi.text
-
-    def create_session(self):
-        doc = self.call('CREATE_SESSION')
-        return doc.sessionId.text
-
-    def call(self, path, extra=None):
-        if not self.webfsapi:
-            raise Exception('No server found')
-
-        if type(extra) is not dict:
-            extra = dict()
-
-        params = dict(
-            pin=self.pin,
-            sid=self.sid,
-        )
-
-        params.update(**extra)
-
-        r = requests.get('%s/%s' % (self.webfsapi, path), params=params)
-        if r.status_code == 404:
-           return None 
-
-        return objectify.fromstring(r.content)
- 
-    def __del__(self):
-        self.call('DELETE_SESSION')
-
-    ####################### handlers #########################################
-
-    def handle_get(self, item):
-        return self.call('GET/{}'.format(item))
-
-    def handle_set(self, item, value):
-        doc = self.call('SET/{}'.format(item), dict(value=value))
-        if doc is None:
-           return None
-        
-        return doc.status == 'FS_OK'
-
-    def handle_text(self, item):
-        doc = self.handle_get(item)
-        if doc is None:
-           return None
-
-        return doc.value.c8_array.text or None
-
-    def handle_int(self, item):
-        doc = self.handle_get(item)
-        if doc is None:
-           return None
-
-        return int(doc.value.u8.text) or None
-
-    # returns an int, assuming the value does not exceed 8 bits
-    def handle_long(self, item):
-        doc = self.handle_get(item)
-        if doc is None:
-           return None
-
-        return int(doc.value.u32.text) or None
-
-    def handle_list(self, item):
-        doc = self.call('LIST_GET_NEXT/'+item+'/-1', dict(
-            maxItems=100,
-        ))
-
-        if doc is None:
-           return []
-
-        if not doc.status == 'FS_OK':
-            return []
-
-        ret = list()
-        for index, item in enumerate(list(doc.iterchildren('item'))):
-            temp = dict(band=index)
-            for field in list(item.iterchildren()):
-                temp[field.get('name')] = list(field.iterchildren()).pop()
-            ret.append(temp)
-
-        return ret
-
-    def collect_labels(self, items):
-        if items is None:
-           return []
-   	
-        return [ str(item['label']) for item in items if item['label'] ]
-
-    ###########################################
-
-    @property
-    def play_status(self):
-        status = self.handle_int('netRemote.play.status')
-        return self.PLAY_STATES.get(status)
-
-    @property
-    def play_info_name(self):
-        return self.handle_text('netRemote.play.info.name')
-
-    @property
-    def play_info_text(self):
-        return self.handle_text('netRemote.play.info.text')
-
-    @property
-    def play_info_artist(self):
-        return self.handle_text('netRemote.play.info.artist')
-
-    @property
-    def play_info_album(self):
-        return self.handle_text('netRemote.play.info.album')
-
-    @property
-    def play_info_graphics(self):
-        return self.handle_text('netRemote.play.info.graphicUri')
-
-    @property
-    def volume_steps(self):
-        return self.handle_int('netRemote.sys.caps.volumeSteps')
-
-    # Read-write ##################################################################################
-
-    #1=Play; 2=Pause; 3=Next (song/station); 4=Previous (song/station)
-    def play_control(self, value):
-        return self.handle_set('netRemote.play.control', value)
-    
-    def play(self):
-        return self.play_control(1)
-
-    def pause(self):
-        return self.play_control(2)
-
-    def next(self):
-        return self.play_control(3)
-
-    def prev(self):
-        return self.play_control(4)
-
-    # Volume
-    def get_volume(self):
-        return self.handle_int('netRemote.sys.audio.volume')
-
-    def set_volume(self, value):
-        return self.handle_set('netRemote.sys.audio.volume', value)
-
-    volume = property(get_volume, set_volume)
-
-    # Frienldy name
-    def get_friendly_name(self):
-        return self.handle_text('netRemote.sys.info.friendlyName')
-
-    def set_friendly_name(self, value):
-        return self.handle_set('netRemote.sys.info.friendlyName', value)
-
-    friendly_name = property(get_friendly_name, set_friendly_name)
-
-    # Mute
-    def get_mute(self):
-        return bool(self.handle_int('netRemote.sys.audio.mute'))
-
-    def set_mute(self, value=False):
-        return self.handle_set('netRemote.sys.audio.mute', int(value))  
-
-    mute = property(get_mute, set_mute)
-
-    # Power
-    def get_power(self):
-        return bool(self.handle_int('netRemote.sys.power'))
-
-    def set_power(self, value=False):
-        return self.handle_set('netRemote.sys.power', int(value))
-
-    power = property(get_power, set_power)
-
-    # Modes
-    @property
-    def modes(self):
-        return self.handle_list('netRemote.sys.caps.validModes')
-
-    @property
-    def mode_list(self):
-        return self.collect_labels(self.modes)
-
-    def get_mode(self):
-        m = None
-        intMode = self.handle_long('netRemote.sys.mode')
-        for mo in self.modes:
-          if mo['band'] == intMode:
-            m = mo['label']
-        return m
-
-    def set_mode(self, value):
-        m = -1
-        for mo in self.modes:
-          if mo['label'] == value:
-            m = mo['band']
-        
-        self.handle_set('netRemote.sys.mode', m)      
-
-    mode = property(get_mode, set_mode)
-
-    @property
-    def duration(self):
-        return self.handle_long('netRemote.play.info.duration')
-
