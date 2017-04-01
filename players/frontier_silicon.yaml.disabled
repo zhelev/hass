@@ -1,0 +1,2 @@
+ - platform: frontier_silicon
+   host: 192.168.1.180

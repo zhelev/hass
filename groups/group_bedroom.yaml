@@ -4,3 +4,7 @@ schlafzimmer:
    - switch.bett_links
    - switch.bett_rechts
    - light.schlafzimmer_lampe
+   - binary_sensor.door_window_sensor_158d00012ac0c1
+   - binary_sensor.motion_sensor_158d00010fee3b
+   - sensor.temperature_158d00011173f5
+   - sensor.humidity_158d00011173f5

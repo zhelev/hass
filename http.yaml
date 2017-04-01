@@ -1,10 +1,12 @@
   api_password: !secret api_password
-  server_port: 8443
-  ssl_certificate: !secret ssl_certificate
-  ssl_key: !secret ssl_key
-  cors_allowed_origins:
-    - https://google.com
-    - https://home-assistant.io
+  ssl_certificate: /etc/letsencrypt/live/my-flat.online/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/my-flat.online/privkey.pem
+  #server_port: 8443
+  #ssl_certificate: !secret ssl_certificate
+  #ssl_key: !secret ssl_key
+  #cors_allowed_origins:
+  #  - https://google.com
+  #  - https://home-assistant.io
   use_x_forwarded_for: true
   ip_ban_enabled: true
   login_attempts_threshold: 3

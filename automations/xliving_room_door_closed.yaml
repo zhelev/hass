@@ -8,5 +8,5 @@
   action:
     service: notify.pushover
     data:
-      title: "Living Room Door Closed"
-      message: "Living Room Door State: {{  states.binary_sensor.door_window_sensor_158d0001263526.state }}"
+      title: "[Mi] Living Room Door Closed"
+      message: "[Mi] Living Room Door State: {{  states.binary_sensor.door_window_sensor_158d0001263526.state }}"

@@ -6,3 +6,4 @@ eingangstuer:
    - sensor.staircase_door_alarm_type_4_0
    - sensor.staircase_door_alarm_level_4_1
    - sensor.staircase_door_sourcenodeid_4_2
+   - sensor.staircase_door_battery_level_4_0

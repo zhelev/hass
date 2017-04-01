@@ -3,3 +3,8 @@ kueche:
   entities:
    - switch.kaffeemaschine
    - switch.wasserkocher
+   - sensor.temperature_158d00012db23f
+   - sensor.humidity_158d00012db23f
+   - binary_sensor.motion_sensor_158d0001186df9
+   - binary_sensor.door_window_sensor_158d00013ee438
+   - binary_sensor.switch_158d000128c29c

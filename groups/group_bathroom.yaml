@@ -2,3 +2,7 @@ badezimmer:
   name: Badezimmer
   entities:
    - switch.waschmaschine
+   - sensor.temperature_158d000156e2e3
+   - sensor.humidity_158d000156e2e3
+   - binary_sensor.motion_sensor_158d0001173321
+   - binary_sensor.door_window_sensor_158d0001130321

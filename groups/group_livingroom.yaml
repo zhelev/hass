@@ -6,3 +6,10 @@ wohnzimmer:
    - scene.wohnzimmer_dunkel
    - scene.wohnzimmer_normal
    - camera.wohnzimmer_camera
+   - sensor.temperature_158d000156e9cd
+   - sensor.humidity_158d000156e9cd
+   - binary_sensor.motion_sensor_158d0001560bcc
+   - binary_sensor.door_window_sensor_158d0001263526
+   - binary_sensor.switch_158d000156b52d
+   - switch.plug_158d000128a4e0
+   - binary_sensor.door_window_sensor_158d00012b001f

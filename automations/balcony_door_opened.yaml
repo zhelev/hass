@@ -9,5 +9,5 @@
   action:
     service: notify.pushover
     data:
-      title: "Balcony door opened"
-      message: "Balcony door changed state (opened): {{ states.binary_sensor.balcony_door_sensor_6_0.state }}"
+      title: "[Z-Wave] Balcony door opened"
+      message: "[Z-Wave] Balcony door changed state (opened): {{ states.binary_sensor.balcony_door_sensor_6_0.state }}"

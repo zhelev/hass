@@ -9,5 +9,5 @@
   action:
     service: notify.pushover
     data:
-      title: "Living Room Motion Detected"
-      message: "Living Room Motion Detection: {{ states.binary_sensor.motion_sensor_158d00012790ed.state }}"
+      title: "[Mi] Living Room Motion Detected"
+      message: "[Mi] Living Room Motion Detection: {{ states.binary_sensor.motion_sensor_158d00012790ed.state }}"

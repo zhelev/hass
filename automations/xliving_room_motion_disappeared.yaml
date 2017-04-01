@@ -8,5 +8,5 @@
   action:
     service: notify.pushover
     data:
-      title: "Living Room Motion Disappeared"
-      message: "Living Room Motion: {{  states.binary_sensor.motion_sensor_158d00012790ed.state }}"
+      title: "[Mi] Living Room Motion Disappeared"
+      message: "[Mi] Living Room Motion: {{  states.binary_sensor.motion_sensor_158d00012790ed.state }}"

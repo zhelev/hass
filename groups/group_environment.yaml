@@ -15,3 +15,5 @@ umgebung:
    - sensor.yr_temperature
    - sensor.yr_wind_direction
    - sensor.yr_wind_speed
+   - sensor.temperature_158d00015a66b8
+   - sensor.humidity_158d00015a66b8

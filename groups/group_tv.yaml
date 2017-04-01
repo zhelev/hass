@@ -1,0 +1,8 @@
+Fehrnsehen:
+  name: Fehrnsehen
+  entities:
+   - switch.philips
+   - switch.lautlos
+   - switch.lauter
+   - switch.sender
+   - switch.voriger

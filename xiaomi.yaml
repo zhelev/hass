@@ -1,3 +1,4 @@
-  gateways:
-   - sid:
-     key: !secret xiaomi_key
+gateways:
+ - sid: 286c07858c2c
+   key: !secret xiaomi_key
+#   interface: 192.168.1.210

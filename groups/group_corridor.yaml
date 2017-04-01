@@ -1,0 +1,6 @@
+korridor:
+  name: Korridor
+  entities:
+   - binary_sensor.motion_sensor_158d00012790ed
+   - binary_sensor.door_window_sensor_158d00011302dc
+   - light.gateway_light_286c07858c2c

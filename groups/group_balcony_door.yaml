@@ -6,3 +6,4 @@ balkontuer:
    - sensor.balcony_door_alarm_type_6_0
    - sensor.balcony_door_alarm_level_6_1
    - sensor.balcony_door_sourcenodeid_6_2
+   - sensor.balcony_door_battery_level_6_0

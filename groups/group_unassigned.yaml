@@ -1,0 +1,5 @@
+unassigned:
+  name: Unassigned
+  entities:
+#   - binary_sensor.door_window_sensor_158d00012b001f 
+   - binary_sensor.door_window_sensor_158d00012afc7c

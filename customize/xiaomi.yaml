@@ -1,0 +1,52 @@
+sensor.humidity_158d000156e2e3:
+  friendly_name: Badezimmer Feuchtigkeit
+sensor.temperature_158d000156e2e3:
+  friendly_name: Badezimmer Temperatur
+sensor.humidity_158d000156e9cd:
+  friendly_name: Wohnzimmer Feuchtigkeit
+sensor.temperature_158d000156e9cd:
+  friendly_name: Wohnzimmer Temperatur
+sensor.temperature_158d00012db23f:
+  friendly_name: Küche Temperatur
+sensor.humidity_158d00012db23f:
+  friendly_name: Küche Feuchtigkeit
+sensor.temperature_158d00011173f5:
+  friendly_name: Schlafzimmer Temperatur
+sensor.humidity_158d00011173f5:
+  friendly_name: Schlafzimmer Feuchtigkeit
+sensor.temperature_158d00015a66b8:
+  friendly_name: Aüßere Temperatur
+sensor.humidity_158d00015a66b8:
+  friendly_name: Aüßere Feuchtigkeit
+binary_sensor.motion_sensor_158d0001173321:
+  friendly_name: Badezimmer Bewegungsmelder
+binary_sensor.motion_sensor_158d0001186df9:
+  friendly_name: Küche Bewegungsmelder
+binary_sensor.motion_sensor_158d0001560bcc:
+  friendly_name: Wohnzimmer Bewegungsmelder
+binary_sensor.motion_sensor_158d00012790ed:
+  friendly_name: Korridor Bewegungsmelder
+binary_sensor.door_window_sensor_158d00011302dc:
+  friendly_name: Tür Korridor
+binary_sensor.door_window_sensor_158d0001130321:
+  friendly_name: Fenster Badezimmer 
+binary_sensor.door_window_sensor_158d0001263526:
+  friendly_name: Tür Wohnzimmer 
+binary_sensor.door_window_sensor_158d00012ac0c1:
+  friendly_name: Fenster Schlafzimmer
+binary_sensor.door_window_sensor_158d00012afc7c:
+  friendly_name: Door Window Add2
+binary_sensor.door_window_sensor_158d00012b001f:
+  friendly_name: Schrank Wohnzimmer 
+binary_sensor.door_window_sensor_158d00013ee438:
+  friendly_name: Fenster Küche
+binary_sensor.switch_158d000156b52d:
+  friendly_name: Mi Switch Wohzimmer
+binary_sensor.switch_158d000128c29c:
+  friendly_name: Mi Switch Küche
+binary_sensor.motion_sensor_158d00010fee3b:
+  friendly_name: Schlafzimmer Bewegungsmelder
+light.gateway_light_286c07858c2c:
+  friendly_name: Mi Gateway Licht
+switch.plug_158d000128a4e0:
+  friendly_name: Mi Wohnzimmer Steckdose
